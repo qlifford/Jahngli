@@ -1,0 +1,7 @@
+<h1>Update Product {{ id }}</h1>
+<a class="mb-3" href="{% url 'show_products' %}">Back</a><br><br>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Save">
+</form>

@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="mb-3">My Products</p>
+    <a class="mb-3" href="{% url 'create_product' %}">Add a product</a><br><br>
+
+        <ul>
+            {% for product in products %}
+                <li>
+            <form action="{% url 'delete_product' product.id %}" method="POST">
+                    {% csrf_token %}
+                    {{ product.name }}
+                <button type="submit">Delete</button>
+                <a href="{% url 'update_product' product.id %}">Edit</a>
+                </li>
+            </form>
+            {% empty %}
+            <p>Products list is empty  <a href="{% url 'create_product' %}">Create?</a>
+            </p>
+            {% endfor %}
+        </ul>
+</body>
+</html>
